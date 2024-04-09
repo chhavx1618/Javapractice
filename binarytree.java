@@ -54,22 +54,49 @@ class binTree {
         }
     }
 
-    public int heightRec (Node root) {
-        if (root==null) {
+    public int sizeRec(Node root) { 
+        if (root == null) {
             return 0;
-        
-        } else {
-            int leftHeight = height(root.left);
-            int rightHeight = height(root.right);
-            return Math.max(leftHeight, rightHeight) + 1;
+        } else { 
+            return sizeRec(root.left)+sizeRec(root.right)+1;
         }
-        
     }
 
-    public void height() {
-        int treeHeight = height(root);
-        System.out.println(treeHeight);
+
+    public void size() {
+        int sizee = sizeRec(root);
+        System.out.println(sizee);
     }
+
+    public int maxRec (Node root) {
+        if (root == null) {
+            return 0;
+        }  else if (root.left != null && root.right!=null){
+            return Math.max(root.key, Math.max(root.left.key, root.right.key));
+        }
+    }
+
+    public void max () {
+        int b = maxRec(root);
+        System.out.println(b);
+    }
+
+    // public int heightRec (Node root) {
+    //     if (root==null) {
+    //         return 0;
+        
+    //     } else {
+    //         int leftHeight = height(root.left);
+    //         int rightHeight = height(root.right);
+    //         return Math.max(leftHeight, rightHeight) + 1;
+    //     }
+        
+    // }
+
+    // public void height() {
+    //     int treeHeight = height(root);
+    //     System.out.println(treeHeight);
+    // }
 }
 
 class binarytree {
@@ -83,7 +110,10 @@ class binarytree {
 
         MyTree.inorder();
 
-        MyTree.height();
+        //MyTree.height();
+        MyTree.size();
+
+        MyTree.max();
 
     }
 }

@@ -161,10 +161,5 @@ class heap_col {
         heap.extractMax();
         heap.print();
 
-
-
-
-
-
     }
 }
