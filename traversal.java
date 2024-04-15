@@ -38,52 +38,64 @@ class binTree {
         return root;
     }
 
-    public int sizeRec(Node root) { 
-        if (root == null) {
-            return 0;
-        } else { 
-            return sizeRec(root.left)+sizeRec(root.right)+1;
+
+    /*Inorder Traversal
+     * left then root then right
+     */
+
+     public void inorder() {
+        inorderRec(root);
+    }
+
+    /*Inorder Traversal
+     * left then root then right
+     */
+
+    public void inorderRec (Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
         }
     }
 
+    /* Post order trav
+    left right then root
+     */
+    void printPostorder(Node root)
+    {
+        if (root == null)
+            return;
 
-    public void size() {
-        int sizee = sizeRec(root);
-        System.out.println(sizee);
+        printPostorder(root.left);
+        printPostorder(root.right);
+        System.out.print(root.key + " ");
     }
 
-    public int maxRec (Node root) {
-        if (root == null) {
-            return 0;
-        }  else if (root.left != null && root.right!=null){
-            return Math.max(root.key, Math.max(root.left.key, root.right.key));
+    public void postorder() {
+        printPostorder(root);
+    }
+
+    /*
+     * Root left right
+     * preorder
+     */
+    public void preorderrec(Node root) {
+        if (root == null){
+            return;
         }
+        System.out.print(root.key + " ");
+        preorderrec(root.left);
+        preorderrec(root.right);
     }
 
-    public void max () {
-        int b = maxRec(root);
-        System.out.println(b);
+    public void preorder() {
+        preorderrec(root);
     }
-
-    // public int heightRec (Node root) {
-    //     if (root==null) {
-    //         return 0;
-        
-    //     } else {
-    //         int leftHeight = height(root.left);
-    //         int rightHeight = height(root.right);
-    //         return Math.max(leftHeight, rightHeight) + 1;
-    //     }
-        
-    // }
-
-    // public void height() {
-    //     int treeHeight = height(root);
-    //     System.out.println(treeHeight);
-    // }
 }
 
-class binarytree {
+
+class traversal {
     public static void main(String[] args) {
         binTree MyTree = new binTree();
         MyTree.insert(10);
@@ -93,11 +105,10 @@ class binarytree {
         MyTree.insert(30);
 
         MyTree.inorder();
-
-        //MyTree.height();
-        MyTree.size();
-
-        MyTree.max();
+        System.out.println();
+        MyTree.postorder();
+        System.out.println();
+        MyTree.preorder();
 
     }
 }
